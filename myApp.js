@@ -6,7 +6,18 @@ let Person = require('./models/person');
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  let someone = new Person({
+    name: "Bodhi",
+    age: 1,
+    favoriteFoods: ["bananas", "strawberries"]
+  })
+
+  someone.save((err, data) => {
+    if (err) return done(error);
+    done(null , data);
+  });
+
+  
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
